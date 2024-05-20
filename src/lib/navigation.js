@@ -39,10 +39,10 @@ export const navigation = [
   {
     title: 'API reference',
     links: [
-      { title: 'CacheAdvance.predict()', href: '/docs/cacheadvance-predict' },
-      { title: 'CacheAdvance.flush()', href: '/docs/cacheadvance-flush' },
-      { title: 'CacheAdvance.revert()', href: '/docs/cacheadvance-revert' },
-      { title: 'CacheAdvance.regret()', href: '/docs/cacheadvance-regret' },
+      { title: 'RailsAI.predict()', href: '/docs/RailsAI-predict' },
+      { title: 'RailsAI.flush()', href: '/docs/RailsAI-flush' },
+      { title: 'RailsAI.revert()', href: '/docs/RailsAI-revert' },
+      { title: 'RailsAI.regret()', href: '/docs/RailsAI-regret' },
     ],
   },
   {

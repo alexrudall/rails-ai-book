@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.flush()
+title: RailsAI.flush()
 nextjs:
   metadata:
-    title: CacheAdvance.flush()
+    title: RailsAI.flush()
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

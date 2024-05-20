@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.revert()
+title: RailsAI.revert()
 nextjs:
   metadata:
-    title: CacheAdvance.revert()
+    title: RailsAI.revert()
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

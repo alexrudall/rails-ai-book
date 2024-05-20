@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.regret()
+title: RailsAI.regret()
 nextjs:
   metadata:
-    title: CacheAdvance.regret()
+    title: RailsAI.regret()
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

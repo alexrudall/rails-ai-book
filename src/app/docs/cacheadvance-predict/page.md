@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.predict()
+title: RailsAI.predict()
 nextjs:
   metadata:
-    title: CacheAdvance.predict()
+    title: RailsAI.predict()
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
