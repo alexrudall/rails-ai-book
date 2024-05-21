@@ -1,25 +1,27 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
-import { Highlight } from 'prism-react-renderer'
+import { Prism as Highlight } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { Button } from '@/components/Button'
 import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'javascript'
-const code = `export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}`
+const codeLanguage = 'ruby'
+const code = `OpenAI::Client.new.chat(
+  parameters: {
+    model: "gpt-4o",
+    messages: [{ role: "user", content: "Hello AI!"}],
+    stream: proc do |chunk, _bytesize|
+      print chunk.dig("choices", 0, "delta", "content")
+    end
+  }
+)`
 
 const tabs = [
-  { name: 'cache-advance.config.js', isActive: true },
-  { name: 'package.json', isActive: false },
+  { name: 'rails_ai.rb', isActive: true },
 ]
 
 function TrafficLightsIcon(props) {
@@ -49,16 +51,15 @@ export function Hero() {
             />
             <div className="relative">
               <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Never miss the cache again.
+                Rails AI
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Cache every single thing your app could ever do ahead of time,
-                so your code never even has to run at all.
+                How to ship your AI MVP, fast, in Ruby on Rails™.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Get started</Button>
-                <Button href="/" variant="secondary">
-                  View on GitHub
+                <Button href="/docs/setup">Get started</Button>
+                <Button href="https://github.com/alexrudall/railsai" variant="secondary">
+                  Contribute on GitHub
                 </Button>
               </div>
             </div>
@@ -116,23 +117,12 @@ export function Hero() {
                     ))}
                   </div>
                   <div className="mt-6 flex items-start px-1 text-sm">
-                    <div
-                      aria-hidden="true"
-                      className="select-none border-r border-slate-300/5 pr-4 font-mono text-slate-600"
-                    >
-                      {Array.from({
-                        length: code.split('\n').length,
-                      }).map((_, index) => (
-                        <Fragment key={index}>
-                          {(index + 1).toString().padStart(2, '0')}
-                          <br />
-                        </Fragment>
-                      ))}
-                    </div>
+
                     <Highlight
                       code={code}
                       language={codeLanguage}
-                      theme={{ plain: {}, styles: [] }}
+                      style={atomDark}
+                      customStyle={{ backgroundColor: "transparent", opacity: "1", marginTop: "-1rem" }}
                     >
                       {({
                         className,

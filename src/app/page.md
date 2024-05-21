@@ -1,112 +1,83 @@
 ---
-title: Getting started
+title: Welcome
+id: welcome
 ---
 
-Learn how to get CacheAdvance set up in your project in under thirty minutes or it's free. {% .lead %}
+Welcome to Rails AI! This is a free, open source book that aims to make it as quick and easy as possible for you to build your Rails AI MVP. {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Installation" icon="installation" href="/" description="Step-by-step guides to setting up your system and installing the library." /%}
+{% quick-link title="Streaming Chat" icon="installation" href="/" description="Step-by-step guide to stream AI chat using Rails, Hotwire and an LLM." /%}
 
-{% quick-link title="Architecture guide" icon="presets" href="/" description="Learn how the internals work and contribute." /%}
-
-{% quick-link title="Plugins" icon="plugins" href="/" description="Extend the library with third-party plugins or write your own." /%}
-
-{% quick-link title="API reference" icon="theming" href="/" description="Learn to easily customize and modify your app's visual design to fit your brand." /%}
+{% quick-link title="Resources" icon="presets" href="/" description="Click here if you don't have time to build &just need the code." /%}
 
 {% /quick-links %}
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.
+---
+
+## What's this book about?
+
+From the start of the [ruby-openai](https://github.com) project in 2020, I always wanted to make it so that a junior developer could go to the correct section of the README, find a working example of the code they need, copy paste that exact code into their project and it would just work.
+
+I believe that this experience is also valuable no matter how senior you are - documentation should be Simple, Clear, Up-to-date, Copy-Pasteable and Runnable.
+
+ruby-openai has now been downloaded over 10 million times, and its documentation has proved to be widely and persistently popular and useful. For the past year I have been focusing on building Rails AI apps and MVPs for a wide variety of clients. In this book I'll share everything I've learned.
+
+### Why is it free?
+
+Like a lot of Rails developers, I learned to code using Michael Hartl's excellent [Rails Tutorial](https://www.railstutorial.org/). Back in 2013 this was free, and didn't even have an email signup wall. As a low-paid project manager trying to find my first dev role and struggling to pay rent in London, this tutorial was my lifeline; I worked on it every evening for 4 months until I landed my first junior Rails developer role. I want to try to recreate something like that experience for a new generation of builders.
+
+### Is it finished?
+
+No! I just started writing this book in May 2024. You can sign up for updates here, and follow along or even contribute on [Github](https://github.com/alexrudall/railsai)
+
+### How do I get started?
+
+Just [click here](/docs/setup) to get started.
 
 ---
 
-## Quick start
+## FAQ
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+### Can I just buy the code?
 
-### Installing dependencies
+Yes! I sell the Rails AI codebase behind this book as well as a "Done For You" MVP building service via [https://landingburn.ai](https://landingburn.ai).
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+### Who are you?
 
-```shell
-npm install @tailwindlabs/cache-advance
-```
+I'm Alex! I've been a Rails engineer at major startups for over 10 years, building major production systems using Ruby on Rails™. I wrote and maintain the ruby-openai gem, which has been downloaded millions of times and is heavily used at multi-billion dollar businesses like Shopify and Gusto. I also maintain the Anthropic and Midjourney Ruby gems. My mission is to help you be successful building with Ruby and AI.
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+A long time ago I also wrote a sci-fi novel about AI eating the world - you can get it for Kindle [here](https://www.amazon.co.uk/Inkers-Alex-Rudall-ebook/dp/B00W8DLNSU) if you're into that kind of thing.
 
-{% callout type="warning" title="Oh no! Something bad happened!" %}
-This is what a disclaimer message looks like. You might want to include inline `code` in it. Or maybe you’ll want to include a [link](/) in it. I don’t think we should get too carried away with other scenarios like lists or tables — that would be silly.
-{% /callout %}
+### Did AI write this book?
 
-### Configuring the library
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-```js
-// cache-advance.config.js
-export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}
-```
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-{% callout title="You should know!" %}
-This is what a disclaimer message looks like. You might want to include inline `code` in it. Or maybe you’ll want to include a [link](/) in it. I don’t think we should get too carried away with other scenarios like lists or tables — that would be silly.
-{% /callout %}
-
----
-
-## Basic usage
-
-Praesentium laudantium magni. Consequatur reiciendis aliquid nihil iusto ut in et. Quisquam ut et aliquid occaecati. Culpa veniam aut et voluptates amet perspiciatis. Qui exercitationem in qui. Vel qui dignissimos sit quae distinctio.
-
-### Your first cache
-
-Minima vel non iste debitis. Consequatur repudiandae et quod accusamus sit molestias consequatur aperiam. Et sequi ipsa eum voluptatibus ipsam. Et quisquam ut.
-
-Qui quae esse aspernatur fugit possimus. Quam sed molestiae temporibus. Eum perferendis dignissimos provident ea et. Et repudiandae quasi accusamus consequatur dolore nobis. Quia reiciendis necessitatibus a blanditiis iste quia. Ut quis et amet praesentium sapiente.
-
-Atque eos laudantium. Optio odit aspernatur consequuntur corporis soluta quidem sunt aut doloribus. Laudantium assumenda commodi.
-
-### Clearing the cache
-
-Vel aut velit sit dolor aut suscipit at veritatis voluptas. Laudantium tempore praesentium. Qui ut voluptatem.
-
-Ea est autem fugiat velit esse a alias earum. Dolore non amet soluta eos libero est. Consequatur qui aliquam qui odit eligendi ut impedit illo dignissimos.
-
-Ut dolore qui aut nam. Natus temporibus nisi voluptatum labore est ex error vel officia. Vero repellendus ut. Suscipit voluptate et placeat. Eius quo corporis ab et consequatur quisquam. Nihil officia facere dolorem occaecati alias deleniti deleniti in.
-
-### Adding middleware
-
-Officia nobis tempora maiores id iusto magni reprehenderit velit. Quae dolores inventore molestiae perspiciatis aut. Quis sequi officia quasi rem officiis officiis. Nesciunt ut cupiditate. Sunt aliquid explicabo enim ipsa eum recusandae. Vitae sunt eligendi et non beatae minima aut.
-
-Harum perferendis aut qui quibusdam tempore laboriosam voluptatum qui sed. Amet error amet totam exercitationem aut corporis accusantium dolorum. Perspiciatis aut animi et. Sed unde error ut aut rerum.
-
-Ut quo libero aperiam mollitia est repudiandae quaerat corrupti explicabo. Voluptas accusantium sed et doloribus voluptatem fugiat a mollitia. Numquam est magnam dolorem asperiores fugiat. Soluta et fuga amet alias temporibus quasi velit. Laudantium voluptatum perspiciatis doloribus quasi facere. Eveniet deleniti veniam et quia veritatis minus veniam perspiciatis.
+No - at least, not this version. For now I want to keep it hand-crafted by humans, as I believe that the effort that goes into a project makes a difference to how valuable it is.
 
 ---
 
 ## Getting help
 
-Consequuntur et aut quisquam et qui consequatur eligendi. Necessitatibus dolorem sit. Excepturi cumque quibusdam soluta ullam rerum voluptatibus. Porro illo sequi consequatur nisi numquam nisi autem. Ut necessitatibus aut. Veniam ipsa voluptatem sed.
+### Call me
 
-### Submit an issue
+I love talking to new people about anything Ruby/AI related. Feel free to book a 15 min call with me here and I'll do my best to help, or at least make you laugh:
 
-Inventore et aut minus ut voluptatem nihil commodi doloribus consequatur. Facilis perferendis nihil sit aut aspernatur iure ut dolores et. Aspernatur odit dignissimos. Aut qui est sint sint.
+- [Book a call](https://calendly.com/alexrudall/intro)
 
-Facere aliquam qui. Dolorem officia ipsam adipisci qui molestiae. Error voluptatem reprehenderit ex.
+### Github
 
-Consequatur enim quia maiores aperiam et ipsum dicta. Quam ut sit facere sit quae. Eligendi veritatis aut ut veritatis iste ut adipisci illo.
+Please feel free to open an Issue on Github if you have a question or something that isn't clear. This book is open source, so if there is something that needs fixing or adding, you can get also involved by submitting a pull request:
+
+- [Rails AI on Github](https://github.com/alexrudall/railsai)
 
 ### Join the community
 
-Praesentium facilis iste aliquid quo quia a excepturi. Fuga reprehenderit illo sequi voluptatem voluptatem omnis. Id quia consequatur rerum consectetur eligendi et omnis. Voluptates iusto labore possimus provident praesentium id vel harum quisquam. Voluptatem provident corrupti.
+Join the Ruby AI Builders Discord to connect with other builders and get help with your project:
 
-Eum et ut. Qui facilis est ipsa. Non facere quia sequi commodi autem. Dicta autem sit sequi omnis impedit. Eligendi amet dolorum magnam repudiandae in a.
+- [Ruby AI Builders Discord](https://discord.gg/SCPdqawMZS)
 
-Molestiae iusto ut exercitationem dolorem unde iusto tempora atque nihil. Voluptatem velit facere laboriosam nobis ea. Consequatur rerum velit ipsum ipsam. Et qui saepe consequatur minima laborum tempore voluptatum et. Quia eveniet eaque sequi consequatur nihil eos.
+### Socials
+
+Feel free to connect with me on X and LinkedIn and drop me a message:
+
+- [X (formerly Twitter)](https://x.com/alexrudall)
+- [LinkedIn](https://www.linkedin.com/in/alex-rudall-902212bb/)

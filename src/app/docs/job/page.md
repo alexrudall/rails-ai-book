@@ -1,8 +1,8 @@
 ---
-title: CacheAdvance.predict()
+title: Introdution to string theory
 nextjs:
   metadata:
-    title: CacheAdvance.predict()
+    title: Introdution to string theory
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
@@ -18,7 +18,7 @@ Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut par
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
-```js
+```ruby
 /** @type {import('@tailwindlabs/lorem').ipsum} */
 export default {
   lorem: 'ipsum',

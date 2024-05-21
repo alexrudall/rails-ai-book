@@ -2,55 +2,33 @@ export const navigation = [
   {
     title: 'Introduction',
     links: [
-      { title: 'Getting started', href: '/' },
-      { title: 'Installation', href: '/docs/installation' },
+      { title: 'Welcome', href: '/', id: 'welcome' },
+      { title: 'Thank yous', href: '/docs/thankyou' },
+      { title: 'Licenses', href: '/docs/licenses' },
     ],
   },
   {
-    title: 'Core concepts',
+    title: 'Guides',
     links: [
-      { title: 'Understanding caching', href: '/docs/understanding-caching' },
+      { title: 'Streaming Chat', href: '/docs/streaming-chat' },
+      { title: 'Assistants (coming soon)', href: '/docs/assistants' },
+      { title: 'Pipelines (coming soon)', href: '/docs/pipelines' },
+      { title: 'Swarms (coming soon)', href: '/docs/swarms' },
+      { title: 'Images (coming soon)', href: '/docs/images' },
+      { title: 'Audio (coming soon)', href: '/docs/audio' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
       {
-        title: 'Predicting user behavior',
-        href: '/docs/predicting-user-behavior',
+        title: 'Buy the Starter Kit',
+        href: '/docs/landingburn',
       },
-      { title: 'Basics of time-travel', href: '/docs/basics-of-time-travel' },
       {
-        title: 'Introduction to string theory',
-        href: '/docs/introduction-to-string-theory',
+        title: 'Resources',
+        href: '/docs/resources',
       },
-      { title: 'The butterfly effect', href: '/docs/the-butterfly-effect' },
-    ],
-  },
-  {
-    title: 'Advanced guides',
-    links: [
-      { title: 'Writing plugins', href: '/docs/writing-plugins' },
-      { title: 'Neuralink integration', href: '/docs/neuralink-integration' },
-      { title: 'Temporal paradoxes', href: '/docs/temporal-paradoxes' },
-      { title: 'Testing', href: '/docs/testing' },
-      { title: 'Compile-time caching', href: '/docs/compile-time-caching' },
-      {
-        title: 'Predictive data generation',
-        href: '/docs/predictive-data-generation',
-      },
-    ],
-  },
-  {
-    title: 'API reference',
-    links: [
-      { title: 'CacheAdvance.predict()', href: '/docs/cacheadvance-predict' },
-      { title: 'CacheAdvance.flush()', href: '/docs/cacheadvance-flush' },
-      { title: 'CacheAdvance.revert()', href: '/docs/cacheadvance-revert' },
-      { title: 'CacheAdvance.regret()', href: '/docs/cacheadvance-regret' },
-    ],
-  },
-  {
-    title: 'Contributing',
-    links: [
-      { title: 'How to contribute', href: '/docs/how-to-contribute' },
-      { title: 'Architecture guide', href: '/docs/architecture-guide' },
-      { title: 'Design principles', href: '/docs/design-principles' },
     ],
   },
 ]
