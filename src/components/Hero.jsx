@@ -1,14 +1,15 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
-import { Highlight } from 'prism-react-renderer'
+import { Prism as Highlight } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { Button } from '@/components/Button'
 import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'javascript'
+const codeLanguage = 'ruby'
 const code = `OpenAI::Client.new.chat(
   parameters: {
     model: "gpt-4o",
@@ -116,23 +117,12 @@ export function Hero() {
                     ))}
                   </div>
                   <div className="mt-6 flex items-start px-1 text-sm">
-                    <div
-                      aria-hidden="true"
-                      className="select-none border-r border-slate-300/5 pr-4 font-mono text-slate-600"
-                    >
-                      {Array.from({
-                        length: code.split('\n').length,
-                      }).map((_, index) => (
-                        <Fragment key={index}>
-                          {(index + 1).toString().padStart(2, '0')}
-                          <br />
-                        </Fragment>
-                      ))}
-                    </div>
+
                     <Highlight
                       code={code}
                       language={codeLanguage}
-                      theme={{ plain: {}, styles: [] }}
+                      style={atomDark}
+                      customStyle={{ backgroundColor: "transparent", opacity: "1", marginTop: "-1rem" }}
                     >
                       {({
                         className,

@@ -16,7 +16,7 @@ This guide will walk you through adding a ChatGPT-like messaging stream to your 
 
 First, add the ruby-openai gem! It needs to be at least version 4. Add Sidekiq too if you don't have it.
 
-```js
+```ruby
 # Gemfile
 # https://github.com/alexrudall/ruby-openai
 gem "ruby-openai", "~> 7.0.1"
@@ -25,6 +25,8 @@ gem "ruby-openai", "~> 7.0.1"
 # https://github.com/sidekiq/sidekiq
 gem "sidekiq", "~> 7.2.4"
 ```
+
+Install Redis on your machine
 
 ### Domain Modelling
 
