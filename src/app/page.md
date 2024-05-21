@@ -17,7 +17,7 @@ Welcome to Rails AI! This is a free, open source book that aims to make it as qu
 
 ## What's this book about?
 
-From the start of the [ruby-openai](https://github.com) project in 2020, I always wanted to make it so that a junior developer could go to the correct section of the README, find a working example of the code they need, copy paste that exact code into their project and it would just work.
+From the start of the [ruby-openai](https://github.com) project in 2020, my goal was for a junior developer to be able to the correct section of the README, find a working example of the code they need, copy paste that exact code into their project and it would just work.
 
 I believe that this experience is also valuable no matter how senior you are - documentation should be Simple, Clear, Up-to-date, Copy-Pasteable and Runnable.
 
