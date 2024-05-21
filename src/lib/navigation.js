@@ -22,7 +22,7 @@ export const navigation = [
     title: 'Resources',
     links: [
       {
-        title: 'Just give me the code',
+        title: 'Buy the Starter Kit',
         href: '/docs/landingburn',
       },
       {
