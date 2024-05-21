@@ -23,7 +23,7 @@ const lexend = localFont({
 export const metadata = {
   title: {
     template: '%s - Docs',
-    default: 'RailsAI - Ship your AI MVP.',
+    default: 'RailsAI - Ship your AI MVP, fast',
   },
   description:
     'Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.',
