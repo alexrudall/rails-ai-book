@@ -14,6 +14,8 @@ export const navigation = [
       { title: 'Assistants (coming soon)', href: '/docs/assistants' },
       { title: 'Pipelines (coming soon)', href: '/docs/pipelines' },
       { title: 'Swarms (coming soon)', href: '/docs/swarms' },
+      { title: 'Images (coming soon)', href: '/docs/images' },
+      { title: 'Audio (coming soon)', href: '/docs/audio' },
     ],
   },
   {
