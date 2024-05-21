@@ -25,7 +25,7 @@ ruby-openai has now been downloaded over 10 million times, and its documentation
 
 ### Why is it free?
 
-Like a lot of Rails developers, I learned to code using Michael Hartl's excellent [Rails Tutorial](https://www.railstutorial.org/). Back in 2013 this was free, and didn't even have an email signup wall. As a low-paid project manager trying to find my first dev role and struggling to pay rent in London, this tutorial was my lifeline; I worked on it every evening for 4 months until I landed my first junior Ruby on Rails developer role. I want to try to recreate something like that experience for a new generation of builders.
+Like a lot of Rails developers, I learned to code using Michael Hartl's excellent [Rails Tutorial](https://www.railstutorial.org/). Back in 2013 this was free, and didn't even have an email signup wall. As a low-paid project manager trying to find my first dev role and struggling to pay rent in London, this tutorial was my lifeline; I worked on it every evening for 4 months until I landed my first junior Rails developer role. I want to try to recreate something like that experience for a new generation of builders.
 
 ### Is it finished?
 
