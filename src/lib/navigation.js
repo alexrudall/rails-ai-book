@@ -26,8 +26,8 @@ export const navigation = [
         href: '/docs/landingburn',
       },
       {
-        title: 'Open Source Resources',
-        href: '/docs/open-source',
+        title: 'Resources',
+        href: '/docs/resources',
       },
     ],
   },
