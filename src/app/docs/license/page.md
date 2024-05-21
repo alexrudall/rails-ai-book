@@ -1,8 +1,8 @@
 ---
-title: Installation
+title: Why are you doing this?
 nextjs:
   metadata:
-    title: Installation
+    title: Why are you doing this?
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

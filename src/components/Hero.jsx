@@ -19,7 +19,6 @@ const code = `export default {
 
 const tabs = [
   { name: 'cache-advance.config.js', isActive: true },
-  { name: 'package.json', isActive: false },
 ]
 
 function TrafficLightsIcon(props) {
@@ -52,12 +51,12 @@ export function Hero() {
                 Rails AI
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                How to build an AI MVP, fast, in Ruby on Rails. By Alex Rudall, author of ruby-openai.
+                How to ship your AI MVP, fast, in Ruby on Rails™.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Get started</Button>
-                <Button href="/" variant="secondary">
-                  View on GitHub
+                <Button href="/docs/setup">Get started</Button>
+                <Button href="https://github.com/alexrudall/railsai" variant="secondary">
+                  Contribute on GitHub
                 </Button>
               </div>
             </div>

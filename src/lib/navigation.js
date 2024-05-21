@@ -2,55 +2,40 @@ export const navigation = [
   {
     title: 'Introduction',
     links: [
-      { title: 'Getting started', href: '/' },
-      { title: 'Installation', href: '/docs/installation' },
+      { title: 'Welcome', href: '/', id: 'welcome' },
+      { title: 'Thank yous', href: '/docs/thankyou' },
+      { title: 'License', href: '/docs/license' },
     ],
   },
   {
-    title: 'Core concepts',
+    title: 'Streaming Chat',
     links: [
-      { title: 'Understanding caching', href: '/docs/understanding-caching' },
+      { title: 'Setup', href: '/docs/setup' },
       {
-        title: 'Predicting user behavior',
+        title: 'Domain modelling',
         href: '/docs/predicting-user-behavior',
       },
-      { title: 'Basics of time-travel', href: '/docs/basics-of-time-travel' },
+      { title: 'Controllers', href: '/docs/basics-of-time-travel' },
       {
-        title: 'Introduction to string theory',
+        title: 'The AI Job',
         href: '/docs/introduction-to-string-theory',
       },
-      { title: 'The butterfly effect', href: '/docs/the-butterfly-effect' },
+      { title: 'Views', href: '/docs/the-butterfly-effect' },
     ],
   },
   {
-    title: 'Advanced guides',
+    title: 'Resources',
     links: [
-      { title: 'Writing plugins', href: '/docs/writing-plugins' },
-      { title: 'Neuralink integration', href: '/docs/neuralink-integration' },
-      { title: 'Temporal paradoxes', href: '/docs/temporal-paradoxes' },
-      { title: 'Testing', href: '/docs/testing' },
-      { title: 'Compile-time caching', href: '/docs/compile-time-caching' },
       {
-        title: 'Predictive data generation',
-        href: '/docs/predictive-data-generation',
+        title: 'Just give me the code',
+        href: '/docs/how-to-contribute',
       },
-    ],
-  },
-  {
-    title: 'API reference',
-    links: [
-      { title: 'RailsAI.predict()', href: '/docs/RailsAI-predict' },
-      { title: 'RailsAI.flush()', href: '/docs/RailsAI-flush' },
-      { title: 'RailsAI.revert()', href: '/docs/RailsAI-revert' },
-      { title: 'RailsAI.regret()', href: '/docs/RailsAI-regret' },
-    ],
-  },
-  {
-    title: 'Contributing',
-    links: [
-      { title: 'How to contribute', href: '/docs/how-to-contribute' },
-      { title: 'Architecture guide', href: '/docs/architecture-guide' },
-      { title: 'Design principles', href: '/docs/design-principles' },
+      {
+        title: 'Just ship my MVP',
+        href: '/docs/architecture-guide',
+      },
+      { title: 'Ruby AI Libraries', href: '/docs/architecture-guide' },
+      { title: 'Ruby AI Builders Discord', href: '/docs/architecture-guide' },
     ],
   },
 ]
