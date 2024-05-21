@@ -3,7 +3,7 @@ title: Welcome
 id: welcome
 ---
 
-Welcome to Rails AI! This is a free, open source book that aims to make it as quick and easy as possible for you to build your Rails AI MVP. {% .lead %}
+Welcome to Rails AI! This is a free, open source book that aims to make it as quick and easy as possible for you to build your Rails AI MVP. It's an MVP, and at a very early stage. Thanks so much for being an early reader! {% .lead %}
 
 {% quick-links %}
 
