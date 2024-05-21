@@ -30,7 +30,7 @@ export const metadata = {
     default: 'RailsAI - Ship your AI MVP, fast',
   },
   description:
-    'Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.',
+    'A free, open source guidebook to building your Rails AI MVP fast.',
 }
 
 export default function RootLayout({ children }) {

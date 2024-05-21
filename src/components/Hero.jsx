@@ -39,7 +39,7 @@ function TrafficLightsIcon(props) {
 }
 
 export function NewsletterSubscribe() {
-  const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
+  const MAILCHIMP_URL = "https://railsai.us21.list-manage.com/subscribe/post?u=a623b400e0bcf18e4d47c7212&amp;id=5709d9f4a4&amp;v_id=120&amp;f_id=002edee6f0";
 
   return (
     <MailchimpSubscribe
@@ -62,6 +62,7 @@ export function NewsletterForm( { status, message, onValidated }) {
 
   const [ error, setError ] = useState(null);
   const [ email, setEmail ] = useState(null);
+  const [ gdpr, setGdpr ] = useState(null);
 
   /**
    * Handle form submit.
@@ -77,7 +78,7 @@ export function NewsletterForm( { status, message, onValidated }) {
       return null;
     }
 
-    const isFormValidated = onValidated({ EMAIL: email });
+    const isFormValidated = onValidated({ EMAIL: email, gdpr: {[1534]: gdpr ? "Y" : "" }});
 
     // On success return true
     return email && email.indexOf("@") > -1 && isFormValidated;
@@ -124,9 +125,17 @@ export function NewsletterForm( { status, message, onValidated }) {
           <input
             onChange={(event) => setEmail(event?.target?.value ?? '')}
             type="email"
-            placeholder="Enter your email"
+            placeholder="Add email to hear first about new chapters!"
             className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pl-4 md:pr-3.5 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-inset dark:md:ring-white/5 dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"
             onKeyUp={(event) => handleInputKeyEvent(event)}
+          />
+        </div>
+        <div className="mc-field-group flex space-x-2">
+          <label htmlFor="gdpr-checkbox" className="text-xs">Also update me about related products!</label>
+          <input
+            id="gdpr-checkbox"
+            onChange={(event) => setGdpr(event.target.checked)}
+            type="checkbox"
           />
         </div>
         <div className="button-wrap wp-block-button">
@@ -177,7 +186,7 @@ export function Hero() {
                   Contribute on GitHub
                 </Button>
               </div>
-              <div class="mt-12">
+              <div className="mt-12">
                 <NewsletterSubscribe></NewsletterSubscribe>
               </div>
             </div>
