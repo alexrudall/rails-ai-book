@@ -126,12 +126,12 @@ export function NewsletterForm( { status, message, onValidated }) {
             onChange={(event) => setEmail(event?.target?.value ?? '')}
             type="email"
             placeholder="Enter email to hear when new chapters are released"
-            className="group flex items-center justify-center sm:justify-start h-auto w-80 flex-none rounded-lg py-2.5 pl-4 pr-3.5 md:text-sm md:ring-1 ring-slate-200 hover:ring-slate-300 lg:w-96 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
+            className="group flex items-center justify-center sm:justify-start h-auto w-80 flex-none rounded-lg py-2.5 pl-4 pr-3.5 md:text-sm md:ring-1 ring-slate-200 hover:ring-slate-300 lg:w-96 dark:bg-slate-800/75 ring-inset ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
             onKeyUp={(event) => handleInputKeyEvent(event)}
           />
         </div>
         <div className="mc-field-group flex space-x-2">
-          <label htmlFor="gdpr-checkbox" className="text-xs">Also update me about related products!</label>
+          <label htmlFor="gdpr-checkbox" className="text-xs text-white">Also update me about related products!</label>
           <input
             id="gdpr-checkbox"
             onChange={(event) => setGdpr(event.target.checked)}
