@@ -4,7 +4,7 @@ export const navigation = [
     links: [
       { title: 'Welcome', href: '/', id: 'welcome' },
       { title: 'Thank yous', href: '/docs/thankyou' },
-      { title: 'License', href: '/docs/license' },
+      { title: 'Licenses', href: '/docs/licenses' },
     ],
   },
   {
