@@ -8,19 +8,12 @@ export const navigation = [
     ],
   },
   {
-    title: 'Streaming Chat',
+    title: 'Guides',
     links: [
-      { title: 'Setup', href: '/docs/setup' },
-      {
-        title: 'Domain modelling',
-        href: '/docs/predicting-user-behavior',
-      },
-      { title: 'Controllers', href: '/docs/basics-of-time-travel' },
-      {
-        title: 'The AI Job',
-        href: '/docs/introduction-to-string-theory',
-      },
-      { title: 'Views', href: '/docs/the-butterfly-effect' },
+      { title: 'Streaming Chat', href: '/docs/streaming-chat' },
+      { title: 'Assistants (coming soon)', href: '/docs/assistants' },
+      { title: 'Pipelines (coming soon)', href: '/docs/pipelines' },
+      { title: 'Swarms (coming soon)', href: '/docs/swarms' },
     ],
   },
   {
@@ -28,14 +21,12 @@ export const navigation = [
     links: [
       {
         title: 'Just give me the code',
-        href: '/docs/how-to-contribute',
+        href: '/docs/landingburn',
       },
       {
-        title: 'Just ship my MVP',
-        href: '/docs/architecture-guide',
+        title: 'Open Source Resources',
+        href: '/docs/open-source',
       },
-      { title: 'Ruby AI Libraries', href: '/docs/architecture-guide' },
-      { title: 'Ruby AI Builders Discord', href: '/docs/architecture-guide' },
     ],
   },
 ]
