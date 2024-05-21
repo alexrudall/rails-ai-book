@@ -9,16 +9,18 @@ import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
 const codeLanguage = 'javascript'
-const code = `export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}`
+const code = `OpenAI::Client.new.chat(
+  parameters: {
+    model: "gpt-4o",
+    messages: [{ role: "user", content: "Hello AI!"}],
+    stream: proc do |chunk, _bytesize|
+      print chunk.dig("choices", 0, "delta", "content")
+    end
+  }
+)`
 
 const tabs = [
-  { name: 'cache-advance.config.js', isActive: true },
+  { name: 'rails_ai.rb', isActive: true },
 ]
 
 function TrafficLightsIcon(props) {
