@@ -126,7 +126,7 @@ export function NewsletterForm( { status, message, onValidated }) {
             onChange={(event) => setEmail(event?.target?.value ?? '')}
             type="email"
             placeholder="Enter email to hear when new chapters are released"
-            className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pl-4 md:pr-3.5 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-inset dark:md:ring-white/5 dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"
+            className="group flex items-center justify-center sm:justify-start h-auto w-80 flex-none rounded-lg py-2.5 pl-4 pr-3.5 md:text-sm md:ring-1 ring-slate-200 hover:ring-slate-300 lg:w-96 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
             onKeyUp={(event) => handleInputKeyEvent(event)}
           />
         </div>
