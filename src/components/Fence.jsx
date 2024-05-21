@@ -2,14 +2,14 @@
 
 import { Fragment } from 'react'
 import { Prism as Highlight } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export function Fence({ children, language }) {
   return (
     <Highlight
       code={children.trimEnd()}
       language={language}
-      style={atomDark}
+      style={dracula}
       customStyle={{ backgroundColor: "transparent", opacity: "1", marginTop: "-1rem" }}
     >
       {({ className, style, tokens, getTokenProps }) => (
