@@ -33,7 +33,7 @@ No! I just started writing this book in May 2024. You can sign up for updates he
 
 ### How do I get started?
 
-Just [click here](/docs/setup) to get started.
+Just [click here](/docs/streaming-chat) to get started.
 
 ---
 
