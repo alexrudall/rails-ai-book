@@ -6,7 +6,12 @@ nextjs:
     description: Other Resources that could be useful
 ---
 
-There is a growing number of Ruby AI projects, resources and developers. Here are a few of my favourites:
+## Social Media
+
+- Use [https://shots.so/](https://shots.so/) to create beautiful screenshots
+- Use [https://www.tldraw.com/](https://www.tldraw.com/) to create beautiful diagrams
+- Use [https://www.shopify.com/tools/logo-maker/](https://www.shopify.com/tools/logo-maker/) to make logos - outputs different sizes for social platforms!
+- Use [https://sharpen.page/articles/](https://sharpen.page/articles/) to make landing pages
 
 ---
 
