@@ -39,6 +39,6 @@ nextjs:
 
 ## Paid Software & Services
 
-### LandingBurn.ai
+### AI::Engine
 
-- [landingburn.ai](https://landingburn.ai) is my company - get your Rails AI MVP built by me in 1 week, or just get the starter kit to kickstart your MVP.
+- [AI::Engine](https://insertrobot.com) is a gem that includes ALL the code in this book - the quickest way to get started with Rails AI, plus direct ongoing support directly from me!

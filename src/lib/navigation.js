@@ -11,19 +11,15 @@ export const navigation = [
     title: 'Guides',
     links: [
       { title: 'Streaming Chat', href: '/docs/streaming-chat' },
-      { title: 'Assistants (coming soon)', href: '/docs/assistants' },
-      { title: 'Pipelines (coming soon)', href: '/docs/pipelines' },
-      { title: 'Swarms (coming soon)', href: '/docs/swarms' },
-      { title: 'Images (coming soon)', href: '/docs/images' },
-      { title: 'Audio (coming soon)', href: '/docs/audio' },
+      { title: 'Assistants', href: '/docs/assistants' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Support',
     links: [
       {
-        title: 'Buy the Starter Kit',
-        href: '/docs/landingburn',
+        title: 'AI::Engine',
+        href: '/docs/ai-engine',
       },
       {
         title: 'Resources',
