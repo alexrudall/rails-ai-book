@@ -1,7 +1,9 @@
 ---
-title: Assistants
+title: Assistable
 nextjs:
   metadata:
-    title: Assistants
+    title: Assistable
     description: Coming soon.
 ---
+
+Coming soon. Email `hello@alexrudall.com` to hurry it along.

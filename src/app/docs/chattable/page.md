@@ -535,8 +535,10 @@ end
 
 ## Usage
 
-In your app you should now be able to create a new Chat, go to its show page and create and receive messages from OpenAI.
+In your app you should now be able to create a new Chat, go to its show page and create and receive messages from the LLM.
+
+There is a limitation of this approach: each time you send a message it will also send the entire message history of this Chat to the LLM. In order to get around this limitation, we can use the [Assistants API](/docs/assistable).
 
 ## Support
 
-Any issues, please email me at [hello@alexrudall.com](hello@alexrudall.com) and I'll respond ASAP.
+Any issues, please email me at `hello@alexrudall.com` and I'll respond ASAP.

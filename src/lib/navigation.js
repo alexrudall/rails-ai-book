@@ -16,6 +16,7 @@ export const navigation = [
     links: [
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Chattable', href: '/docs/chattable' },
+      { title: 'Assistable', href: '/docs/assistable' },
     ],
   },
   {

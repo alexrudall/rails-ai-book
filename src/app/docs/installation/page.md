@@ -83,7 +83,7 @@ The new tables should then be available in your database and visible in your `db
 
 ## Support
 
-Any issues, please email me at [hello@alexrudall.com](hello@alexrudall.com) and I'll respond ASAP.
+Any issues, please email me at `hello@alexrudall.com` and I'll respond ASAP.
 
 ## Done
 

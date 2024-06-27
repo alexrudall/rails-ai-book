@@ -170,4 +170,4 @@ Some slight changes to specs can cause VCR to append requests to cassette files 
 
 ## Support
 
-Any issues, please email me at [hello@alexrudall.com](hello@alexrudall.com) and I'll respond ASAP.
+Any issues, please email me at `hello@alexrudall.com` and I'll respond ASAP.
