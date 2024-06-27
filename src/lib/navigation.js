@@ -8,7 +8,14 @@ export const navigation = [
     ],
   },
   {
-    title: 'Guides',
+    title: 'AI::Engine Guides',
+    links: [
+      { title: 'Streaming Chat', href: '/docs/chattable' },
+      { title: 'Assistants', href: '/docs/assistable' },
+    ],
+  },
+  {
+    title: 'DIY Guides',
     links: [
       { title: 'Streaming Chat', href: '/docs/streaming-chat' },
       { title: 'Assistants', href: '/docs/assistants' },
