@@ -8,6 +8,8 @@ nextjs:
 
 This guide will walk you through adding a ChatGPT-like messaging stream to your Rails app using [AI::Engine](https://insertrobot.com).
 
+The guide includes the backend integration with AI::Engine, controllers and views to create Chats and Messages, and various helpers to allow streaming of responses. The gem keeps track of the tokens used to create each message, and calculates the cost, which can be seen in the UI below.
+
 ![chattable-ui](/images/ai-engine/chattable/chattable-ui.png)
 
 ---
@@ -28,7 +30,7 @@ The relations between these models and the methods added can be viewed in [this 
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/models/user.rb)
 
-Add the Chattable module to the model that will 'own' Chats - probably the `User` model or similar.
+Add the Chattable module to the model that Chats will `belong_to` - probably the `User` model or similar.
 
 ```ruby
 class User < ApplicationRecord
@@ -36,7 +38,7 @@ class User < ApplicationRecord
   ...
 ```
 
-This adds a new relation, so you can call `User.chats` and get a list of all AI::Engine::Chats belonging to a user.
+This adds a new `has_many` relation, so you can call `User.chats` and get a list of all `AI::Engine::Chats` belonging to a user.
 
 It also adds 2 new callbacks methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message belonging to the User (or whichever model includes Chattable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
 
@@ -123,9 +125,9 @@ Rails.application.routes.draw do
   ...
 ```
 
-### Add a way to render markdown
+### Helpers
 
-This helper method uses the Redcarpet gem to handle any markdown received from the LLM:
+This global helper method uses the Redcarpet gem to handle any markdown received from the LLM:
 
 ```ruby
 # app/helpers/application_helper.rb
@@ -145,6 +147,26 @@ module ApplicationHelper
     renderer.render(content).html_safe
   end
 end
+```
+
+A couple of helpers for Messages:
+
+```ruby
+module MessagesHelper
+  def created_by(message:)
+    return message.user.full_name if message.user?
+
+    return message.model if message.in_chat?
+  end
+
+  def message_model_options(selected_model: nil)
+    options_for_select(
+      AI::Engine::MODEL_OPTIONS,
+      selected: selected_model
+    )
+  end
+end
+
 ```
 
 ### Chats controller
@@ -369,7 +391,46 @@ end
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/tree/main/app/views/messages)
 
-We need the partials to create the messages.
+We need partials to create and show the messages:
+
+app/views/messages/\_form.html.erb
+
+```erb
+<%= turbo_frame_tag "#{dom_id(messageable)}_message_form" do %>
+  <%= form_with(model: AI::Engine::Message.new, url: [messageable.messages.new], data: {
+      controller: "reset-form submit-form-on-enter",
+      action: "turbo:submit-start->reset-form#reset keydown.enter->submit-form-on-enter#submit:prevent"
+    }) do |form| %>
+    <div class="my-5">
+      <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full focus:border-red-600 focus:ring-red-600", autofocus: true, "data-reset-form-target" => "content" %>
+    </div>
+
+    <div class="flex justify-items-end">
+      <% if messageable.is_a?(AI::Engine::Chat) %>
+        <div class="mr-auto">
+          <%= form.label :model, "Model:" %>
+          <%= form.select :model, message_model_options(selected_model: selected_model), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <%= form.hidden_field :chat_id, value: messageable.id %>
+      <% else %>
+        <div class="mr-auto">
+          <%= form.label :storyteller_id, "Storyteller:" %>
+          <%= form.select :storyteller_id, message_storyteller_options(assistant_thread: messageable, selected_storyteller_id: selected_storyteller_id), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <%= form.hidden_field :assistant_thread_id, value: messageable.id %>
+      <% end %>
+
+      <%= form.button type: :submit, class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" do %>
+        <i class="fas fa-paper-plane"></i>
+        <span class="pl-2">Send</span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+```
 
 app/views/messages/\_message.html.erb
 
@@ -394,7 +455,81 @@ app/views/messages/\_message.html.erb
 </li>
 ```
 
+### Messages JS
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/tree/main/app/javascript/controllers)
+
+We also need a couple of Stimulus JS controllers to submit the form when Enter is pressed:
+
+```js
+// app/javascript/controllers/submit_form_on_enter_controller.js
+import { Controller } from '@hotwired/stimulus'
+
+export default class extends Controller {
+  submit(event) {
+    event.currentTarget.requestSubmit()
+  }
+}
+```
+
+And to reset the input box on submit:
+
+```js
+// app/javascript/controllers/reset_form_controller.js
+import { Controller } from '@hotwired/stimulus'
+
+export default class extends Controller {
+  static targets = ['content']
+
+  reset() {
+    this.element.reset()
+    this.contentTarget.value = ''
+  }
+}
+```
+
 ## Specs
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
+
+Finally, here's a request spec using VCR to check the messages endpoint hits OpenAI and streams the result. It checks that 2 messages are created, one for the user message and one for the LLM response.
+
+```ruby
+require "rails_helper"
+
+RSpec.describe MessagesController, type: :request do
+  let(:current_user) { create(:user) }
+
+  before do
+    sign_in current_user
+  end
+
+  describe "POST /create" do
+    context "with valid parameters" do
+      context "with a chat" do
+        let(:chat) { current_user.chats.create }
+        let(:model) { AI::Engine::MODEL_OPTIONS.sample }
+        let(:valid_attributes) { {chat_id: chat.id, content: "Hi there", model: model} }
+
+        it "creates a new Message" do
+          # Sends the message history off to OpenAI and gets the response.
+          VCR.use_cassette("requests_chat_messages_create_and_run") do
+            expect {
+              post messages_url, as: :turbo_stream, params: {message: valid_attributes}
+            }.to change(chat.messages, :count).by(2)
+          end
+
+          expect(chat.messages.count).to eq(2)
+          response = chat.messages.last
+          expect(response.content).to be_present
+          expect(response.model).to eq(model)
+          expect(response.remote_id).to eq(nil)
+        end
+      end
+    end
+  end
+end
+```
 
 ## Support
 
