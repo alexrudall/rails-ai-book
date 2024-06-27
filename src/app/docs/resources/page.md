@@ -6,15 +6,6 @@ nextjs:
     description: Other Resources that could be useful
 ---
 
-## Social Media
-
-- Use [https://shots.so/](https://shots.so/) to create beautiful screenshots
-- Use [https://www.tldraw.com/](https://www.tldraw.com/) to create beautiful diagrams
-- Use [https://www.shopify.com/tools/logo-maker/](https://www.shopify.com/tools/logo-maker/) to make logos - outputs different sizes for social platforms!
-- Use [https://sharpen.page/articles/](https://sharpen.page/articles/) to make landing pages
-
----
-
 ## Communities
 
 - The [Ruby AI Builders community](https://discord.gg/SCPdqawMZS) on Discord, a growing and enthusiastic group of learners and doers.
@@ -37,8 +28,9 @@ nextjs:
 
 ---
 
-## Paid Software & Services
+## Social Media
 
-### AI::Engine
-
-- [AI::Engine](https://insertrobot.com) is a gem that includes ALL the code in this book - the quickest way to get started with Rails AI, plus direct ongoing support directly from me!
+- Use [https://shots.so/](https://shots.so/) to create beautiful screenshots
+- Use [https://www.tldraw.com/](https://www.tldraw.com/) to create beautiful diagrams
+- Use [https://www.shopify.com/tools/logo-maker/](https://www.shopify.com/tools/logo-maker/) to make logos - outputs different sizes for social platforms!
+- Use [https://sharpen.page/articles/](https://sharpen.page/articles/) to make landing pages

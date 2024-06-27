@@ -1,8 +1,8 @@
 ---
-title: Assistants
+title: Assistable
 nextjs:
   metadata:
-    title: Assistants
+    title: Assistable
     description: Coming soon.
 ---
 

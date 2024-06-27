@@ -3,13 +3,13 @@ title: Welcome
 id: welcome
 ---
 
-Welcome to Rails AI! This is a free, open source book that aims to make it as quick and easy as possible for you to build your Rails AI MVP. This book is itself an MVP, and at a very early stage. Thanks so much for being an early reader! {% .lead %}
+Welcome to RailsAI! This is a free, open source book that aims to make it as quick and easy as possible for you to build your Rails AI MVP. This book is itself an MVP, and at a very early stage. Thanks so much for being an early reader! {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Streaming Chat" icon="installation" href="/docs/streaming-chat" description="Step-by-step guide to stream AI chat using Rails, Hotwire and an LLM." /%}
+{% quick-link title="DIY Streaming Chat" icon="installation" href="/docs/streaming-chat" description="Want to do it yourself? Step-by-step guide to stream AI chat using Rails, Hotwire and an LLM." /%}
 
-{% quick-link title="Resources" icon="presets" href="/docs/resources" description="Click here if you don't have time to build & just need the code." /%}
+{% quick-link title="AI::Engine Chattable" icon="presets" href="/docs/chattable" description="Guide to using the AI::Engine gem to integrate with the OpenAI API in minutes rather than days." /%}
 
 {% /quick-links %}
 
@@ -41,7 +41,7 @@ Just [click here](/docs/streaming-chat) to get started.
 
 ### Can I just buy the code?
 
-Yes! I sell the Rails AI codebase behind this book as well as a "Done For You" MVP building service via [https://landingburn.ai](https://landingburn.ai).
+Yes! I just launched a gem called AI::Engine to let you integrate with the OpenAI API in minutes rather than days. Subscribers get constant updates, improvements and new features and AI APIs integrations with a simple `bundle install`, plus direct email and video call support. [Buy here](https://insertrobot.com) - installation guide [here](/docs/installation).
 
 ### Who are you?
 

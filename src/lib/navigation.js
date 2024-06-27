@@ -8,7 +8,19 @@ export const navigation = [
     ],
   },
   {
-    title: 'Guides',
+    title: 'Best Practices',
+    links: [{ title: 'VCR', href: '/docs/vcr' }],
+  },
+  {
+    title: 'AI::Engine Guides',
+    links: [
+      { title: 'Installation', href: '/docs/installation' },
+      { title: 'Chattable', href: '/docs/chattable' },
+      { title: 'Assistable', href: '/docs/assistable' },
+    ],
+  },
+  {
+    title: 'DIY Guides',
     links: [
       { title: 'Streaming Chat', href: '/docs/streaming-chat' },
       { title: 'Assistants', href: '/docs/assistants' },
@@ -17,10 +29,6 @@ export const navigation = [
   {
     title: 'Support',
     links: [
-      {
-        title: 'AI::Engine',
-        href: '/docs/ai-engine',
-      },
       {
         title: 'Resources',
         href: '/docs/resources',
