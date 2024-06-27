@@ -10,6 +10,7 @@ export const navigation = [
   {
     title: 'AI::Engine Guides',
     links: [
+      { title: 'Installation', href: '/docs/installation' },
       { title: 'Streaming Chat', href: '/docs/chattable' },
       { title: 'Assistants', href: '/docs/assistable' },
     ],
@@ -24,10 +25,6 @@ export const navigation = [
   {
     title: 'Support',
     links: [
-      {
-        title: 'AI::Engine',
-        href: '/docs/ai-engine',
-      },
       {
         title: 'Resources',
         href: '/docs/resources',

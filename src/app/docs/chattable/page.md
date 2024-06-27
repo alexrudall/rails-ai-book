@@ -6,7 +6,7 @@ nextjs:
     description: Add a messaging stream.
 ---
 
-This guide will walk you through adding a ChatGPT-like messaging stream to your Ruby on Rails 7 app using ruby-openai, Rails 7, Hotwire, Turbostream, Sidekiq and Tailwind. It's based on [this gist](https://gist.github.com/alexrudall/cb5ee1e109353ef358adb4e66631799d).
+This guide will walk you through adding a ChatGPT-like messaging stream to your Ruby on Rails 7 app using [AI::Engine](https://insertrobot.com).
 
 ---
 
