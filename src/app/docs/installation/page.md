@@ -65,7 +65,24 @@ AI::Engine.setup do |config|
 end
 ```
 
-## Problems
+## Generate Migrations
+
+AI::Engine comes with namespaced tables, used to store Chats, Messages, Assistants, Threads and Runs in your database, for easy management of the OpenAI&#174; API. Once the gem is installed, run:
+
+```
+bundle exec rails ai_engine:install:migrations
+
+```
+
+Run the migrations to add the tables:
+
+```
+bundle exec rails db:migrate
+```
+
+The new tables should then be available in your database and visible in your `db/schema.rb` or `db/structure.sql`.
+
+## Support
 
 Any issues, please email me at [hello@alexrudall.com](hello@alexrudall.com) and I'll respond ASAP.
 
