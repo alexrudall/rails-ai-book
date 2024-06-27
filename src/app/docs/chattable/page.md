@@ -492,6 +492,8 @@ export default class extends Controller {
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
 
+[Click here to see how I set up VCR for verifying AI integrations](/docs/vcr)
+
 Finally, here's a request spec using VCR to check the messages endpoint hits OpenAI and streams the result. It checks that 2 messages are created, one for the user message and one for the LLM response.
 
 ```ruby
@@ -530,6 +532,10 @@ RSpec.describe MessagesController, type: :request do
   end
 end
 ```
+
+## Usage
+
+In your app you should now be able to create a new Chat, go to its show page and create and receive messages from OpenAI.
 
 ## Support
 

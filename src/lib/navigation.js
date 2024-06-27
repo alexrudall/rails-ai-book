@@ -8,11 +8,14 @@ export const navigation = [
     ],
   },
   {
+    title: 'Best Practices',
+    links: [{ title: 'VCR', href: '/docs/vcr' }],
+  },
+  {
     title: 'AI::Engine Guides',
     links: [
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Chattable', href: '/docs/chattable' },
-      { title: 'Assistable', href: '/docs/assistable' },
     ],
   },
   {
