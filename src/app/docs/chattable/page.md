@@ -8,6 +8,8 @@ nextjs:
 
 This guide will walk you through adding a ChatGPT-like messaging stream to your Rails app using [AI::Engine](https://insertrobot.com).
 
+![chattable-ui](/images/ai-engine/chattable/chattable-ui.png)
+
 ---
 
 ## Installation
@@ -366,6 +368,31 @@ end
 ### Messages views
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/tree/main/app/views/messages)
+
+We need the partials to create the messages.
+
+app/views/messages/\_message.html.erb
+
+```erb
+<% if defined?(scroll_to) && scroll_to %>
+  <li id="<%= dom_id message %>" class="py-4" x-init="$el.scrollIntoView({ behavior: 'smooth' })">
+<% else %>
+  <li id="<%= dom_id message %>" class="py-4">
+<% end %>
+  <div class="flex items-center gap-x-3">
+    <% if message.user? %>
+      <% user = message.user %>
+      <%= image_tag(user.avatar_url, class: "h-6 w-6 flex-none rounded-full bg-gray-800") %>
+      <h3 class="flex-auto truncate font-semibold leading-6 text-gray-900"><%= created_by(message: message) %></h3>
+    <% else %>
+      <h3 class="flex-none truncate font-semibold leading-6 text-gray-900"><%= created_by(message: message) %></h3>
+      <div class="flex-auto text-sm text-gray-500"><%= message.prompt_token_usage %> input tokens [$<%= message.input_cost %>] / <%= message.completion_token_usage %> output tokens [$<%= message.output_cost %>]</div>
+    <% end %>
+    <div class="flex-none text-sm text-gray-500"><%= time_ago_in_words(message.created_at) %> ago</div>
+  </div>
+  <p class="mt-3 text-gray-900"><%= markdown(message.content) %></p>
+</li>
+```
 
 ## Specs
 
