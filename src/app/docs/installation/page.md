@@ -30,7 +30,7 @@ There is a guide to doing this on different platforms [here](https://chlee.co/ho
 
 Install the latest version of AI::Engine, passing your token in via ENV:
 
-```
+```ruby
 source "https://#{ENV["AI_ENGINE_TOKEN"]}@get.keygen.sh/97ac1497-64bd-4754-8336-d709b6df18b1/0.3.0" do
   gem "ai-engine", "~> 0.3.0"
 end
@@ -42,7 +42,7 @@ Run `bundle install` to fetch and install the gem!
 
 AI::Engine needs your OpenAI Access Token and Organization ID, so add this file:
 
-```
+```ruby
 # config/initializers/ai_engine.rb
 AI::Engine.setup do |config|
   config.openai_access_token = ENV.fetch("OPENAI_ACCESS_TOKEN"nil)
@@ -54,7 +54,7 @@ end
 
 For dotenv to work in a config file you might need to include it as below. Also, for testing with VCR, adding a dummy-token can be useful to avoid TOKEN NOT FOUND errors.
 
-```
+```ruby
 # config/initializers/ai_engine.rb
 require "dotenv/load"
 Dotenv.load("../../.env")
@@ -69,14 +69,13 @@ end
 
 AI::Engine comes with namespaced tables, used to store Chats, Messages, Assistants, Threads and Runs in your database, for easy management of the OpenAI&#174; API. Once the gem is installed, run:
 
-```
+```bash
 bundle exec rails ai_engine:install:migrations
-
 ```
 
 Run the migrations to add the tables:
 
-```
+```bash
 bundle exec rails db:migrate
 ```
 
