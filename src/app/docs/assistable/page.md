@@ -24,7 +24,9 @@ First, install AI::Engine - [guide here](/docs/installation).
 
 ## Data Model
 
-OpenAI Assistants consist of 4 concepts: Assistants, Threads, Runs and Messages. Assistants store the AI model, and any supporting files and data. Threads represent a set of Messages. Messages can be added by the user to Threads, and then at any point a Run can be created, which needs an Assistant and a Thread. The Run will then pass all the Messages in the given Thread to the Assistant, which will then take a summary of all the messages so far, and generate a response, which can be streamed from the Run.
+OpenAI Assistants consist of 4 concepts: Assistants, Threads, Runs and Messages. Assistants store the AI model, and any supporting files and data. Threads represent a set of Messages. Messages can be added by the user to Threads.
+
+Then, at any point, a Run can be created, which requires 1 Assistant and 1 Thread. The Run will then pass all the Messages in the given Thread to the given Assistant, which will then take a summary of all the messages so far, and generate a response using its model. The response can be streamed.
 
 To mirror this in your Rails app, AI::Engine includes a `Assistable` module, the `AI::Engine::Assistant`, `AI::Engine::AssistantThread`, `AI::Engine::Run` and `AI::Engine::Message` classes and migrations to add these to your database. They're called `AI::Engine::AssistantThreads` rather than `AI::Engine::Threads` because `Thread` is an important protected word in Ruby.
 
