@@ -10,7 +10,7 @@ nextjs:
 
 This guide will walk you through adding streaming AI Assistants to your Rails app using [AI::Engine](https://insertrobot.com).
 
-The guide includes the backend integration with AI::Engine, controllers and views to create Assistants, Threads, Runs and Messages, and various helpers to allow streaming of responses. It includes an abstraction called Storyteller, which is a model in your app that owns an assistant - it could be anything, eg. BusinessStrategy, RecipeMaker, etc.
+The guide includes the backend integration with AI::Engine, controllers and views to create Assistants, Threads, Runs and Messages, and various helpers to allow streaming of responses. It includes an abstraction called Storyteller, which is a model in your app that owns an assistant - Storyteller could instead be called anything you want, any _type of assistant_, eg. BusinessStrategy, RecipeMaker, etc.
 
 ![assistable-ui](/images/ai-engine/assistable/assistable-ui.png)
 
