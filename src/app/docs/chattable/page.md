@@ -92,7 +92,13 @@ end
 
 ## User Interface
 
-Now we need a way to create the chats and messages and stream the response messages from the user. This assumes the use of these gems:
+Now we need a way to create the chats and messages and stream the response messages from the user.
+
+### Gemfile
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/Gemfile)
+
+We're using these gems:
 
 ```ruby
 # Gemfile
@@ -114,6 +120,8 @@ gem "redcarpet", "~> 3.6"
 ```
 
 ### Routes
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/config/routes.rb)
 
 Add the routes:
 
@@ -169,7 +177,7 @@ end
 
 ```
 
-### Chats controller
+### ChatsController
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/controllers/chats_controller.rb)
 
