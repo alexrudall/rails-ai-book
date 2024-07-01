@@ -20,6 +20,8 @@ First, install AI::Engine - [guide here](/docs/installation).
 
 ## Data Model
 
+[Click here to view Data Model diagram](https://www.tldraw.com/ro/ytRoTCpPne2Tj2I4RW4KV?v=-103,-212,2203,1249&p=page)
+
 AI::Engine includes a `Chattable` module, the `AI::Engine::Chat` and `AI::Engine::Message` classes and migrations to add these to your database.
 
 The relations between these models and the methods added can be viewed in [this diagram](https://www.tldraw.com/ro/ytRoTCpPne2Tj2I4RW4KV?v=-103,-212,2203,1249&p=page). Red indicates code that will be added to your app via `include Chattable`, and blue code that is in the AI::Engine gem. Yellow text indicates relations between models in your app and models in AI::Engine.
@@ -61,7 +63,7 @@ It also adds 2 new callbacks methods, `ai_engine_on_message_create` and `ai_engi
   end
 ```
 
-### Create Message & Run
+### Create Message & Stream
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/jobs/create_chat_message_and_stream.rb)
 
@@ -90,9 +92,9 @@ end
 
 `Chat#run` will create a response message with `role: "assistant"` and stream updates from OpenAI to it, triggering `User#ai_engine_on_message_create` and `User#ai_engine_on_message_update`, the latter once per chunk as it's received.
 
-## User Interface
+## User Interface [Optional]
 
-Now we need a way to create the chats and messages and stream the response messages from the user.
+That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents one simple way to build a user interface for AI::Engine Chat.
 
 ### Gemfile
 
@@ -137,6 +139,8 @@ Rails.application.routes.draw do
 
 This global helper method uses the Redcarpet gem to handle any markdown received from the LLM:
 
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/helpers/application_helper.rb)
+
 ```ruby
 # app/helpers/application_helper.rb
 module ApplicationHelper
@@ -158,6 +162,8 @@ end
 ```
 
 A couple of helpers for Messages:
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/helpers/messages_helper.rb)
 
 ```ruby
 module MessagesHelper
@@ -496,7 +502,7 @@ export default class extends Controller {
 }
 ```
 
-## Specs
+## Specs [Optional]
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
 
@@ -541,9 +547,11 @@ RSpec.describe MessagesController, type: :request do
 end
 ```
 
-## Usage
+## Use
 
-In your app you should now be able to create a new Chat, go to its show page and create and receive messages from the LLM.
+In your app you should now be able to create a new Chat, go to its show page and create and receive messages from the LLM!
+
+## Limitations
 
 There is a limitation of this approach: each time you send a message it will also send the entire message history of this Chat to the LLM. In order to get around this limitation, we can use the [Assistants API](/docs/assistable).
 
