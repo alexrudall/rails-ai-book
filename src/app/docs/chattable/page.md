@@ -505,7 +505,7 @@ export default class extends Controller {
 }
 ```
 
-## Specs [Optional]
+## Spec [Optional]
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
 

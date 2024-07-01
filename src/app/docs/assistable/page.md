@@ -395,6 +395,209 @@ app/views/storytellers/show.html.erb
 </div>
 ```
 
+### AssistantThreadsController
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/controllers/assistant_threads_controller.rb)
+
+We need a way to create the `AI::Engine::Threads` that will represent a thread of messages.
+
+```ruby
+# app/controllers/assistant_threads_controller.rb
+class AssistantThreadsController < ApplicationController
+  before_action :set_assistant_thread, only: %i[show edit update destroy]
+
+  # GET /assistant_threads or /assistant_threads.json
+  def index
+    @assistant_threads = current_user.assistant_threads.all.order(created_at: :desc)
+  end
+
+  # GET /assistant_threads/1 or /assistant_threads/1.json
+  def show
+    @selected_storyteller_id = @assistant_thread.messages.order(:created_at).last&.run&.assistant&.assistable_id
+  end
+
+  # GET /assistant_threads/new
+  def new
+    @assistant_thread = current_user.assistant_threads.new
+  end
+
+  # GET /assistant_threads/1/edit
+  def edit
+  end
+
+  # POST /assistant_threads or /assistant_threads.json
+  def create
+    @assistant_thread = current_user.assistant_threads.new
+
+    respond_to do |format|
+      if @assistant_thread.save
+        format.html { redirect_to assistant_thread_url(@assistant_thread), notice: "Thread was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /assistant_threads/1 or /assistant_threads/1.json
+  def update
+    respond_to do |format|
+      if @assistant_thread.save
+        format.html { redirect_to assistant_thread_url(@assistant_thread), notice: "Thread was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /assistant_threads/1 or /assistant_threads/1.json
+  def destroy
+    @assistant_thread.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to assistant_threads_url, notice: "Thread was successfully destroyed." }
+    end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_assistant_thread
+    @assistant_thread = current_user.assistant_threads.find(params[:id])
+  end
+end
+```
+
+### Assistant Threads views
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/tree/main/app/views/assistant_threads)
+
+Simple views for Assistant Threads CRUD:
+
+app/views/assistant_threads/index.html.erb
+
+```erb
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Threads</h1>
+    <%= link_to "New thread", new_assistant_thread_path, class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
+  </div>
+
+  <div id="assistant_threads" class="min-w-full">
+    <%= render @assistant_threads %>
+  </div>
+</div>
+```
+
+app/views/assistant_threads/\_assistant_thread.html.erb
+
+```erb
+<div id="<%= dom_id assistant_thread %>">
+  <p class="my-5">
+    <%= "Created #{assistant_thread.created_at.to_formatted_s(:short)}" %>
+    <% storytellers = assistant_thread.runs.map { |run| run.assistant.assistable }.uniq %>
+    <% if storytellers.one? %>
+      <%= "with " %>
+      <%= link_to storytellers.first.name, storytellers.first %>
+    <% elsif storytellers.any? %>
+      <%= "with: " %>
+      <ul>
+        <% storytellers.map do |storyteller| %>
+          <li><%= link_to storyteller.name, storyteller %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this thread", assistant_thread, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this thread", edit_assistant_thread_path(assistant_thread), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
+```
+
+app/views/assistant_threads/new.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full space-y-8">
+  <h1 class="font-bold text-4xl">New thread</h1>
+
+  <%= render "form", assistant_thread: @assistant_thread %>
+
+  <%= link_to "Back to threads", assistant_threads_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+```
+
+app/views/assistant_threads/edit.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing assistant_thread</h1>
+
+  <%= render "form", assistant_thread: @assistant_thread %>
+
+  <%= link_to "Show this thread", @assistant_thread, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to threads", assistant_threads_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+```
+
+app/views/assistant_threads/\_form.html.erb
+
+```erb
+<%= form_with(model: assistant_thread, class: "contents") do |form| %>
+  <% if assistant_thread.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(assistant_thread.errors.count, "error") %> prohibited this thread from being saved:</h2>
+
+      <ul>
+        <% assistant_thread.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
+```
+
+app/views/assistant_threads/show.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <div class="bg-white py-8">
+      <div class="mx-auto px-6 ">
+        <ul role="list" class="overflow-y-auto max-h-[48vh] flex flex-col-reverse">
+          <%= turbo_stream_from "#{dom_id(@assistant_thread)}_messages" %>
+          <div id="<%= dom_id(@assistant_thread) %>_messages">
+            <%= render @assistant_thread.messages.order(:created_at) %>
+          </div>
+        </ul>
+
+        <%= render partial: "messages/form", locals: { messageable: @assistant_thread, selected_storyteller_id: @selected_storyteller_id } %>
+      </div>
+    </div>
+
+    <%= link_to "Edit this thread", edit_assistant_thread_path(@assistant_thread), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this thread", assistant_thread_path(@assistant_thread), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to "Back to threads", assistant_threads_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
+```
+
 ### Messages controller
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/controllers/messages_controller.rb)
@@ -524,7 +727,7 @@ export default class extends Controller {
 }
 ```
 
-## Specs [Optional]
+## Spec [Optional]
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
 
