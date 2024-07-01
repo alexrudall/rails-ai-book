@@ -41,14 +41,15 @@ The relations between these models and the methods added can be viewed in [this 
 Add the Assistable module to the model that an Assistant will `belong_to` - in this example the `Storyteller` model, in your app it could be anything, eg. a BusinessStrategy or a SpaghettiRecipeMaker.
 
 ```ruby
+# app/models/storyteller.rb
 class Storyteller < ApplicationRecord
   include AI::Engine::Assistable
   ...
 ```
 
-This adds a new `has_one` relation, so you can call `Storyteller#assistant` and get the `AI::Engine::Assistant` belonging to the model. It adds `before_create :create_openai_assistant` and `before_update :update_openai_assistant` callbacks so that when a Storyteller
+This adds a new `has_one` relation, so you can call `Storyteller#assistant` and get the `AI::Engine::Assistant` belonging to the model. It adds `before_create :create_openai_assistant` and `before_update :update_openai_assistant` callbacks, so the corresponding `AI::Engine::Assistant` and the Assistant on OpenAI's API will be created and updated to match the Storyteller.
 
-It also adds a method, `ai_engine_assistant`, which can be overridden in your Assistable model - eg., Storyteller - to define the Assistant. For example, this Storyteller definition takes the Assistant parameters from the Storyteller. The corresponding `AI::Engine::Assistant` and the Assistant on OpenAI's API will then be created and updated to match the Storyteller.
+It adds a method, `ai_engine_assistant`, which can be overridden in your Assistable model - eg., Storyteller - to define the Assistant. For example, this Storyteller definition takes the Assistant parameters from the Storyteller.
 
 ```ruby
   class Storyteller < ApplicationRecord
@@ -65,15 +66,73 @@ It also adds a method, `ai_engine_assistant`, which can be overridden in your As
   end
 ```
 
+It also adds a method, `ai_engine_run`, which takes an `assistant_thread` and `content` as params, creates an `AI::Engine::Message` with the user content and runs an `AI::Engine::Run` to get the AI response from the API. The response will be added to a second `AI::Engine::Message` which can be streamed to the UI.
+
 ### Include Threadable
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/models/user.rb)
 
 We also need a way to create and manage Threads and receive messages from OpenAI.
 
+Add the Threadable module to the model that Threads will `belong_to` - probably a `User` or `Team` model.
+
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+  include AI::Engine::Threadable
+  ...
+```
+
+This adds a new `has_many` relation, so you can call `User#assistant_threads` and get the `AI::Engine::AssistantThreads` belonging to the model.
+
+It also adds 2 new callback methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message on an AssistantThread belonging to the User (or whichever model includes Threadable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
+
+```ruby
+  def ai_engine_on_message_create(message:)
+    broadcast_ai_response(message:)
+  end
+
+  def ai_engine_on_message_update(message:)
+    broadcast_ai_response(message:)
+  end
+
+  def broadcast_ai_response(message:)
+    broadcast_append_to(
+      "#{dom_id(message.messageable)}_messages",
+      partial: "messages/message",
+      locals: {message: message, scroll_to: true},
+      target: "#{dom_id(message.messageable)}_messages"
+    )
+  end
+```
+
+### Create Assistant Message & Run
+
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/jobs/create_assistant_message_and_run.rb)
+
+Next we need a way to create messages and get a response from OpenAI. Generally it's recommended to do this in a background job, so that you can stream incremental updates for the best user experience. Here's an example:
+
+```ruby
+# app/jobs/create_assistant_message_and_run.rb
+class CreateAssistantMessageAndRun < SidekiqJob
+  def perform(args)
+    storyteller_id, assistant_thread_id, user_id, content = args.values_at("storyteller_id", "assistant_thread_id", "user_id", "content")
+
+    user = User.find(user_id)
+
+    assistant_thread = user.assistant_threads.find(assistant_thread_id)
+    storyteller = user.storytellers.find(storyteller_id)
+
+    storyteller.ai_engine_run(assistant_thread: assistant_thread, content: content)
+  end
+end
+```
+
+`Storyteller#ai_engine_run` will create a response message with `role: "assistant"` and stream updates from OpenAI to it, triggering `User#ai_engine_on_message_create` and `User#ai_engine_on_message_update`, the latter once per chunk as it's received.
+
 ## User Interface [Optional]
 
-That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents one simple way to build a user interface for AI::Engine Assistants.
+That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents 1 simple way to build a user interface for AI::Engine Assistants.
 
 ### Storyteller CRUD
 
@@ -86,7 +145,7 @@ We can now add a simple Storyteller resource. Each Storyteller will get a corres
 We're using these gems:
 
 ```ruby
-# Gemfile
+# /Gemfile
 # Hotwire's SPA-like page accelerator
 # https://turbo.hotwired.dev
 gem "turbo-rails"
