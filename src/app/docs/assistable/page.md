@@ -106,7 +106,7 @@ It also adds 2 new callback methods, `ai_engine_on_message_create` and `ai_engin
   end
 ```
 
-### Create Assistant Message & Run
+### Create Message & Run
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/jobs/create_assistant_message_and_run.rb)
 
