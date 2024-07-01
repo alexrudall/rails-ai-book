@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
 This adds a new `has_many` relation, so you can call `User.chats` and get a list of all `AI::Engine::Chats` belonging to a user.
 
-It also adds 2 new callbacks methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message belonging to the User (or whichever model includes Chattable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
+It also adds 2 new callback methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message belonging to the User (or whichever model includes Chattable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
 
 ```ruby
   def ai_engine_on_message_create(message:)
@@ -94,7 +94,7 @@ end
 
 ## User Interface [Optional]
 
-That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents one simple way to build a user interface for AI::Engine Chat.
+That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents 1 simple way to build a user interface for AI::Engine Chat.
 
 ### Gemfile
 
