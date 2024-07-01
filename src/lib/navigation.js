@@ -17,7 +17,7 @@ export const navigation = [
   {
     title: 'How I build Rails apps',
     links: [
-      { title: 'VCR', href: '/docs/vcr' },
+      { title: 'Testing APIs', href: '/docs/vcr' },
       { title: 'Bug Hunting', href: '/docs/bug-hunting' },
     ],
   },

@@ -35,6 +35,7 @@ The relations between these models and the methods added can be viewed in [this 
 Add the Chattable module to the model that Chats will `belong_to` - probably the `User` model or similar.
 
 ```ruby
+# app/models/user.rb
 class User < ApplicationRecord
   include AI::Engine::Chattable
   ...
@@ -166,6 +167,7 @@ A couple of helpers for Messages:
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/helpers/messages_helper.rb)
 
 ```ruby
+# app/helpers/messages_helper.rb
 module MessagesHelper
   def created_by(message:)
     return message.user.full_name if message.user?
@@ -381,6 +383,7 @@ app/views/chats/show.html.erb
 For the messages controller, we just need a single async endpoint to create new user messages using our job:
 
 ```ruby
+# app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   def create
     CreateChatMessageAndStream.perform_async(
@@ -511,6 +514,7 @@ export default class extends Controller {
 Finally, here's a request spec using VCR to check the messages endpoint hits OpenAI and streams the result. It checks that 2 messages are created, one for the user message and one for the LLM response.
 
 ```ruby
+# spec/requests/messages_spec.rb
 require "rails_helper"
 
 RSpec.describe MessagesController, type: :request do
