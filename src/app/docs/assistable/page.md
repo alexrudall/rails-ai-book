@@ -6,8 +6,6 @@ nextjs:
     description: Add OpenAI Assistants to your Rails app.
 ---
 
-[Work in progress!]
-
 This guide will walk you through adding streaming AI Assistants to your Rails app using [AI::Engine](https://insertrobot.com).
 
 The guide includes the backend integration with AI::Engine, controllers and views to create Assistants, Threads, Runs and Messages, and various helpers to allow streaming of responses. It includes an abstraction called Storyteller, which is a model in your app that owns an assistant - Storyteller could instead be called anything you want, any _type of assistant_, eg. BusinessStrategy, RecipeMaker, etc.
@@ -23,6 +21,8 @@ First, install AI::Engine - [guide here](/docs/installation).
 ---
 
 ## Data Model
+
+[Click here to view Data Model diagram](https://www.tldraw.com/ro/ytRoTCpPne2Tj2I4RW4KV?v=-103,-212,2203,1249&p=page)
 
 OpenAI Assistants consist of 4 concepts: Assistants, Threads, Runs and Messages. Assistants store the AI model, and any supporting files and data. Threads represent a set of Messages. Messages can be added by the user to Threads.
 
@@ -67,11 +67,13 @@ It also adds a method, `ai_engine_assistant`, which can be overridden in your As
 
 ### Include Threadable
 
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/models/user.rb)
+
 We also need a way to create and manage Threads and receive messages from OpenAI.
 
-## User Interface
+## User Interface [Optional]
 
-Now we need a way to create the storytellers and threads stream the response messages from the user.
+That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents one simple way to build a user interface for AI::Engine Assistants.
 
 ### Storyteller CRUD
 
@@ -124,3 +126,11 @@ We set `@selected_model` so that different models can be chosen per response, an
 ```ruby
 
 ```
+
+## Use
+
+In your app you should now be able to create a new `Storyteller` and a new `AssistantThread`, go to the `AssistantThread` show page and create and receive messages from the Assistant!
+
+## Support
+
+Any issues, please email me at `hello@alexrudall.com` and I'll respond ASAP.
