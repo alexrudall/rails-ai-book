@@ -8,22 +8,25 @@ export const navigation = [
     ],
   },
   {
-    title: 'Best Practices',
-    links: [{ title: 'VCR', href: '/docs/vcr' }],
+    title: 'Rails AI Guides',
+    links: [
+      { title: 'Streaming Chat', href: '/docs/streaming-chat' },
+      { title: 'Assistants', href: '/docs/assistants' },
+    ],
   },
   {
-    title: 'AI::Engine Guides',
+    title: 'How I build Rails apps',
+    links: [
+      { title: 'Testing APIs', href: '/docs/vcr' },
+      { title: 'Bug Hunting', href: '/docs/bug-hunting' },
+    ],
+  },
+  {
+    title: 'AI::Engine Docs',
     links: [
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Chattable', href: '/docs/chattable' },
       { title: 'Assistable', href: '/docs/assistable' },
-    ],
-  },
-  {
-    title: 'DIY Guides',
-    links: [
-      { title: 'Streaming Chat', href: '/docs/streaming-chat' },
-      { title: 'Assistants', href: '/docs/assistants' },
     ],
   },
   {

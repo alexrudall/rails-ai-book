@@ -20,6 +20,8 @@ First, install AI::Engine - [guide here](/docs/installation).
 
 ## Data Model
 
+[Click here to view Data Model diagram](https://www.tldraw.com/ro/ytRoTCpPne2Tj2I4RW4KV?v=-103,-212,2203,1249&p=page)
+
 AI::Engine includes a `Chattable` module, the `AI::Engine::Chat` and `AI::Engine::Message` classes and migrations to add these to your database.
 
 The relations between these models and the methods added can be viewed in [this diagram](https://www.tldraw.com/ro/ytRoTCpPne2Tj2I4RW4KV?v=-103,-212,2203,1249&p=page). Red indicates code that will be added to your app via `include Chattable`, and blue code that is in the AI::Engine gem. Yellow text indicates relations between models in your app and models in AI::Engine.
@@ -33,6 +35,7 @@ The relations between these models and the methods added can be viewed in [this 
 Add the Chattable module to the model that Chats will `belong_to` - probably the `User` model or similar.
 
 ```ruby
+# app/models/user.rb
 class User < ApplicationRecord
   include AI::Engine::Chattable
   ...
@@ -40,7 +43,7 @@ class User < ApplicationRecord
 
 This adds a new `has_many` relation, so you can call `User.chats` and get a list of all `AI::Engine::Chats` belonging to a user.
 
-It also adds 2 new callbacks methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message belonging to the User (or whichever model includes Chattable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
+It also adds 2 new callback methods, `ai_engine_on_message_create` and `ai_engine_on_message_update`, which are called by AI::Engine whenever a new message belonging to the User (or whichever model includes Chattable) is created or updated. They can be used, for example, like this to broadcast changes over Hotwire:
 
 ```ruby
   def ai_engine_on_message_create(message:)
@@ -61,7 +64,7 @@ It also adds 2 new callbacks methods, `ai_engine_on_message_create` and `ai_engi
   end
 ```
 
-### Create Message & Run
+### Create Message & Stream
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/jobs/create_chat_message_and_stream.rb)
 
@@ -90,9 +93,9 @@ end
 
 `Chat#run` will create a response message with `role: "assistant"` and stream updates from OpenAI to it, triggering `User#ai_engine_on_message_create` and `User#ai_engine_on_message_update`, the latter once per chunk as it's received.
 
-## User Interface
+## User Interface [Optional]
 
-Now we need a way to create the chats and messages and stream the response messages from the user.
+That's the integration complete! The rest of this guide is optional and dependent on your app - it just represents 1 simple way to build a user interface for AI::Engine Chat.
 
 ### Gemfile
 
@@ -137,6 +140,8 @@ Rails.application.routes.draw do
 
 This global helper method uses the Redcarpet gem to handle any markdown received from the LLM:
 
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/helpers/application_helper.rb)
+
 ```ruby
 # app/helpers/application_helper.rb
 module ApplicationHelper
@@ -159,7 +164,10 @@ end
 
 A couple of helpers for Messages:
 
+[Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/app/helpers/messages_helper.rb)
+
 ```ruby
+# app/helpers/messages_helper.rb
 module MessagesHelper
   def created_by(message:)
     return message.user.full_name if message.user?
@@ -255,6 +263,25 @@ end
 
 Simple views for Chat CRUD:
 
+app/views/chats/index.html.erb
+
+```erb
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Chats</h1>
+    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
+  </div>
+
+  <div id="chats" class="min-w-full">
+    <%= render @chats %>
+  </div>
+</div>
+```
+
 app/views/chats/\_chat.html.erb
 
 ```erb
@@ -268,6 +295,31 @@ app/views/chats/\_chat.html.erb
     <%= link_to "Edit this chat", edit_chat_path(chat), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
+</div>
+```
+
+app/views/chats/new.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full space-y-8">
+  <h1 class="font-bold text-4xl">New chat</h1>
+
+  <%= render "form", chat: @chat %>
+
+  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+```
+
+app/views/chats/edit.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing chat</h1>
+
+  <%= render "form", chat: @chat %>
+
+  <%= link_to "Show this chat", @chat, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
 ```
 
@@ -291,50 +343,6 @@ app/views/chats/\_form.html.erb
     <%= form.submit class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
-```
-
-app/views/chats/edit.html.erb
-
-```erb
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing chat</h1>
-
-  <%= render "form", chat: @chat %>
-
-  <%= link_to "Show this chat", @chat, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
-```
-
-app/views/chats/index.html.erb
-
-```erb
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Chats</h1>
-    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
-  </div>
-
-  <div id="chats" class="min-w-full">
-    <%= render @chats %>
-  </div>
-</div>
-```
-
-app/views/chats/new.html.erb
-
-```erb
-<div class="mx-auto md:w-2/3 w-full space-y-8">
-  <h1 class="font-bold text-4xl">New chat</h1>
-
-  <%= render "form", chat: @chat %>
-
-  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
 ```
 
 app/views/chats/show.html.erb
@@ -375,6 +383,7 @@ app/views/chats/show.html.erb
 For the messages controller, we just need a single async endpoint to create new user messages using our job:
 
 ```ruby
+# app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   def create
     CreateChatMessageAndStream.perform_async(
@@ -496,7 +505,7 @@ export default class extends Controller {
 }
 ```
 
-## Specs
+## Spec [Optional]
 
 [Click here to view in Starter Kit](https://github.com/alexrudall/ai-engine-starter-kit/blob/main/spec/requests/messages_spec.rb)
 
@@ -505,6 +514,7 @@ export default class extends Controller {
 Finally, here's a request spec using VCR to check the messages endpoint hits OpenAI and streams the result. It checks that 2 messages are created, one for the user message and one for the LLM response.
 
 ```ruby
+# spec/requests/messages_spec.rb
 require "rails_helper"
 
 RSpec.describe MessagesController, type: :request do
@@ -541,9 +551,11 @@ RSpec.describe MessagesController, type: :request do
 end
 ```
 
-## Usage
+## Use
 
-In your app you should now be able to create a new Chat, go to its show page and create and receive messages from the LLM.
+In your app you should now be able to create a new Chat, go to its show page and create and receive messages from the LLM!
+
+## Limitations
 
 There is a limitation of this approach: each time you send a message it will also send the entire message history of this Chat to the LLM. In order to get around this limitation, we can use the [Assistants API](/docs/assistable).
 
