@@ -263,6 +263,25 @@ end
 
 Simple views for Chat CRUD:
 
+app/views/chats/index.html.erb
+
+```erb
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Chats</h1>
+    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
+  </div>
+
+  <div id="chats" class="min-w-full">
+    <%= render @chats %>
+  </div>
+</div>
+```
+
 app/views/chats/\_chat.html.erb
 
 ```erb
@@ -276,6 +295,31 @@ app/views/chats/\_chat.html.erb
     <%= link_to "Edit this chat", edit_chat_path(chat), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
+</div>
+```
+
+app/views/chats/new.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full space-y-8">
+  <h1 class="font-bold text-4xl">New chat</h1>
+
+  <%= render "form", chat: @chat %>
+
+  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+```
+
+app/views/chats/edit.html.erb
+
+```erb
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing chat</h1>
+
+  <%= render "form", chat: @chat %>
+
+  <%= link_to "Show this chat", @chat, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
 ```
 
@@ -299,50 +343,6 @@ app/views/chats/\_form.html.erb
     <%= form.submit class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
-```
-
-app/views/chats/edit.html.erb
-
-```erb
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing chat</h1>
-
-  <%= render "form", chat: @chat %>
-
-  <%= link_to "Show this chat", @chat, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
-```
-
-app/views/chats/index.html.erb
-
-```erb
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Chats</h1>
-    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-red-600 text-white block font-medium" %>
-  </div>
-
-  <div id="chats" class="min-w-full">
-    <%= render @chats %>
-  </div>
-</div>
-```
-
-app/views/chats/new.html.erb
-
-```erb
-<div class="mx-auto md:w-2/3 w-full space-y-8">
-  <h1 class="font-bold text-4xl">New chat</h1>
-
-  <%= render "form", chat: @chat %>
-
-  <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
 ```
 
 app/views/chats/show.html.erb
