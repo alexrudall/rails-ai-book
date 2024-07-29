@@ -45,7 +45,7 @@ AI::Engine needs your OpenAI Access Token and Organization ID, so add this file:
 ```ruby
 # config/initializers/ai_engine.rb
 AI::Engine.setup do |config|
-  config.openai_access_token = ENV.fetch("OPENAI_ACCESS_TOKEN"nil)
+  config.openai_access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", nil)
   config.openai_organization_id = ENV.fetch("OPENAI_ORGANIZATION_ID", nil)
 end
 ```
