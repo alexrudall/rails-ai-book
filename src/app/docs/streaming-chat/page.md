@@ -6,7 +6,7 @@ nextjs:
     description: Add a messaging stream.
 ---
 
-This guide will walk you through adding a ChatGPT-like messaging stream to your Ruby on Rails 7 app using ruby-openai, Rails 7, Hotwire, Turbostream, Sidekiq and Tailwind. It's based on [this gist](https://gist.github.com/alexrudall/cb5ee1e109353ef358adb4e66631799d).
+This guide will walk you through adding a ChatGPT-like messaging stream to your Ruby on Rails 8 app using ruby-openai, Rails 8, Hotwire, Turbostream, Sidekiq and Tailwind. It's based on [this gist](https://gist.github.com/alexrudall/cb5ee1e109353ef358adb4e66631799d).
 
 ---
 
@@ -68,7 +68,7 @@ The chat migration should look like:
 ```ruby
 # db/migrate/20230427131800_create_chats.rb
 # bin/rails generate migration CreateChats user:references
-class CreateChats < ActiveRecord::Migration[7.0]
+class CreateChats < ActiveRecord::Migration[8.0]
   def change
     create_table :chats do |t|
       t.references :user, null: false, foreign_key: true
@@ -84,7 +84,7 @@ The messages migration:
 ```ruby
 # db/migrate/20230427131900_create_messages.rb
 # bin/rails generate migration CreateMessages chat:references role:integer content:string
-class CreateMessages < ActiveRecord::Migration[7.0]
+class CreateMessages < ActiveRecord::Migration[8.0]
   def change
     create_table :messages do |t|
       t.references :chat, foreign_key: true
@@ -119,7 +119,7 @@ and the Message model:
 class Message < ApplicationRecord
   include ActionView::RecordIdentifier
 
-  enum role: { system: 0, assistant: 10, user: 20 }
+  enum :role, { system: 0, assistant: 10, user: 20 }
 
   belongs_to :chat
 
@@ -168,6 +168,8 @@ Add the Chat controller:
 ```ruby
 # app/controllers/chats_controller.rb
 class ChatsController < ApplicationController
+  respond_to :html
+
   before_action :authenticate_user!
   before_action :set_chat, only: %i[show]
 
