@@ -60,7 +60,7 @@ Generate the migrations:
 
 ```bash
 bin/rails generate migration CreateChats user:references
-bin/rails generate migration CreateMessages chat:references role:integer content:string
+bin/rails generate migration CreateMessages chat:references role:integer content:string response_number:integer
 ```
 
 The chat migration should look like:
@@ -83,7 +83,7 @@ The messages migration:
 
 ```ruby
 # db/migrate/20230427131900_create_messages.rb
-# bin/rails generate migration CreateMessages chat:references role:integer content:string
+# bin/rails generate migration CreateMessages chat:references role:integer content:string response_number:integer
 class CreateMessages < ActiveRecord::Migration[7.0]
   def change
     create_table :messages do |t|
