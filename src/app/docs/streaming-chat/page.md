@@ -12,6 +12,10 @@ This guide will walk you through adding a ChatGPT-like messaging stream to your 
 
 ## Setup
 
+### Prerequisites
+
+It is assumed that your app is using [Devise](https://github.com/heartcombo/devise), and you have a User model.
+
 ### Gemfile
 
 First, add the ruby-openai gem! It needs to be at least version 4. Add Sidekiq too if you don't have it.
