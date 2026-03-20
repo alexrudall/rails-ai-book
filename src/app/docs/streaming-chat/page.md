@@ -52,6 +52,8 @@ Add your secret OpenAI token to your .env file. Get one from OpenAI [here](https
 OPENAI_ACCESS_TOKEN=abc123
 ```
 
+You'll also need to add and configure the [dotenv](https://github.com/bkeepers/dotenv) gem.
+
 ## Models
 
 ### Migrations
